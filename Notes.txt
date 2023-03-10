@@ -281,7 +281,7 @@ const HeaderComponent = () => {
 
 - Component inside another component(nested component) is known as "Component Composition".
 
-Chapter 04:
+Chapter 04: Swiggy App Starts, Props, Virtual Dom
 -----------
 - IS JSX Mandatory in React - No
 - IS ES6 Mandatory in React - No
@@ -322,6 +322,15 @@ Virtual DOM:
 -----------
 - Representaion of a DOM
 - We required for re-concelation in React.
+
+- React uses something known as virtual DOM. Virtual DOM is a representation of the actual DOM and react uses something known as reconciliation. Reconciliation is the process where we have a diff algorithm which finds out the difference between the trees(one tree with the other tree), now when it found out the difference it will re-render only the portion which is required.(It is like git diff)
+
+What is re-conciliation ?
+------------------------
+The algorithm React uses to diff one tree with another to determine which parts needs to be changed.
+
+- React says don't use "index" use "key".
+- no keys(not acceptable) <<<<<<<< index(use only if you do not have anything) <<< unique key(best pratice)
 
 
 Chapter 5:
