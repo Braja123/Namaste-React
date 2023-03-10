@@ -1,0 +1,773 @@
+Editor - VS Code
+Browser - Chrome
+
+Installed Extension in VS Code:
+-------------------------------
+- Better Comments
+- Bracket pair colorization Toggler
+- ES7 + React/Redux/React-Native Snippets
+- GitLens 
+- Prettier
+- VScode-icons
+
+Installing Packages:
+--------------------
+- npm i -D parcel
+- npm i react
+- npm i react-dom
+
+To Compile React:
+-----------------
+- npx parcel index.html
+
+- Npm  - It is not "Node Package Manager"
+- "-D" when installing any package means "DevDependencies"
+
+Chapter 01:
+-----------
+<script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+- Here "react@18" means we are using react version 18
+
+
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+- Here "react-dom@18" means we are using web version of react that's why they used "react-dom".
+- Gives you access to DOM
+- Whatever code we write that should goes into the browser that is happening inside that library.
+
+const heading = React.createElement("h1", {}, "Namaste React");
+- This is how we create element using javascript.
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+- Tells React what is the root element inside my app.
+- Where I want to run the react code.
+
+root.render(heading);
+- Passing the React element inside the root.
+- Whenever we pass anything to the "render" method that gets injected inside the root.
+- "render" method takes the React element and modifies our DOM means injects to the DOM.  
+
+- At the end of the day React element is a plain javascript "object".
+
+- If you want to add React to your existing project then you can do that by creating a "root" id and inject React to it. 
+
+<div id="root">Not render</div>
+- This means react is not configured properly or react is missing.
+
+
+Chapter 02:
+-----------
+const container = React.createElement(
+  'div',
+  {
+    id: 'container'
+    hello: 'world'  -> This is a valid syntax, we can write anything here and this is also known as "props"
+  },
+  [heading, heading2]
+)
+
+- BUNDLERS -> Webpack, Parcel, Vite, etc
+- In bydefault React uses "Webpack" bundler.
+
+- NPM - Manages all the packages in our app
+- Why do we use NPM?
+Ans: Because our React app powered by lot of things suppose we have to minified it or bundle it or we have to remove console log, optimize our code for that we need lot of helper packages and those helper packages comes inside "NPM"
+
+- "npm init -y" - used to create "package.json" file
+- If we will use "-y" then npm will skip all the questions.
+- If will don't use "-y" then npm will ask questions about your project.
+
+
+To install Parcel Bundler:
+- npm install -D parcel
+- Here "-D" means devDependencies and "--save-dev" means also same.
+
+- Dependency means all the packages that our project use.
+
+- "devDependencies" means we need our package only in development not in production. That's why we used inside "devDependencies"
+
+- Version "~2.8.3" - Here will upgrade "major(which is 2)" version. (~ - tilde)
+- "^2.8.3" means - Here only "minor(which is 3)" version will update. (^ - caret)
+- "2.8.3" means - I just want to use this version, don't want any change
+
+- "package-lock.json" will tell you which version you are using. It is a proof that what exact version you used. It keeps a snapshot of the version.
+- "package-loack.json" is a very important file it locks the version.
+-Note: Don't put "package-loack.json" in ".gitignore" file.
+- "package-loack.json" maintains a hash(sha512) in it, this hash insures that what exactly the version of the "parcel" running on my system, is exactly same on the production or not.
+
+- "node-modules" are like database to the npm.
+- Do not use "node-modules" to ".gitignore".
+- If we have "package.json" and "package-loack.json" then we can re-generate the "node-modules" again by using "npm install".
+
+- It is not a good practice to use "React CDN" because if any react version change in future thten we have to change the CDN also, so that is very much hectic.
+
+- "npm i react" - when we do not use "-D" means we want use globally.
+
+- "npx parcel index.html" - here "npx" means it executes using "npm".
+- "npx parcel index.html" - means We have to execute "parcel" with the entry point of our app which is index.html.
+
+- "Browser scripts cannot have imports or exports" - To fix this error we have to use "type="module" in script tag.
+- When we  use "type="module" in script tag - we are telling "HTML" that our script tag is "module" not a normal script tag.
+
+Parcel Benifits:
+---------------
+- When we do "npx parcel index.html" - it just creates a development build for us and hosted in a server(localhost://3000)
+
+- Tell parcel to make a Production build - "npx parcel build index.html"
+
+- Parcel will build all the production file(minified, cleaning our code(remove console.log files) and other things) in the dist folder.
+
+- HMR - Hot Module Replacement - Means "Parcel" is keeps a track of the files which are updating, if you change any file.
+
+- File Watcher Algorithm - It has written in C++.
+-  It just keep track of all the files which are changing in Real time and it tells the server reload.
+- So when we save any file we show "Built in 1.72s", is done by FWA.
+- Using this watcher Parcel watches every file in your project root(including all node_modules). 
+
+- "Parcel" is using this folder ".parcel-cache" to do all it's task.
+
+- "dist" folder basically keeps the file "minified" for us.
+
+- When we run "npx parcel index.html" - It just creates a development build for us and it host in our server.
+- "npx parcel build index.html" - used for production build.
+- But when we tell our "Parcel" to make a production build, parcel will build all the production file into my "dist" folder.
+- When we build our app, Parcel minified our app and pushed three files into "dist" folder.
+
+- Create a Server
+- BUNDLING
+- MINIFY
+- Cleaning our
+- Dev and Build production
+- Super fast build algorithm
+- Image Optimization
+- Caching while development - When first time we build our app that take much time, but when we save any changes it make changes within milliseconds so that "Parcel" done by "Caching".
+- COMPRESSING OUR FILE
+- Compartible with older version of browser(adds polyfils)
+- HTTPS on Dev - Parcel allows us to enable "https" in our local machine. 
+command: npx parcel index.html --https
+- Manages Port number
+- Zero Config
+- Tree Shaking - Removing unwanted codes.
+If we have to import any library to our file and that library has many functions but among them if we use only some of the functions then "Parcel" ignored rest of the functions which are unused.
+
+- BrowserList - It is used to make our code compartible for all the browsers.
+URL: https://browserslist.dev/?q=bGFzdCAyIHZlcnNpb25z
+URL to modify in other country: https://github.com/browserslist/browserslist
+Ex: "browserslist": [
+    "last 2 versions"
+  ]   
+-> means it will definitely use in last 2 version of all the browsers.
+
+
+- ".parcel-cache" - Put inside ".gitignore".
+- Anything which can be auto-generated on server we will put that inside ".gitignore"
+- Anything which can be re-generated that we can put inside ".gitignore"
+
+- React uses so many packages and that packages uses devDependencies to make the app fast.
+
+- "Transitive Dependencies"
+- We have our package manager which handles and takes care of our "Transitive Dependencies" of our codes.
+
+- When we are building a production ready app we need to do lot of thing which are these, bundling , minification, image optimization, HMR, etc. and we can not do alone we need some dependencies on it when we need dependencies so those dependencies also dependent on something tree, so this is a dependencies tree.
+- And this dependencies over another dependency over another dependency over another dependency is known as "Transitive Dependencies".
+
+- How can to made a perfrmance scalable app?
+Ans: There are so many things that react optimize for us and there are so many things which bundlers gives us. So our whole application is combination of all these things and to fast our app we used bundling, HMR, tree shaking, image optimization, etc. 
+
+
+Chapter 03:
+----------
+- We can our "script" tag in "package.json" file.
+- Like to execute the app we used to write "npx parcel index.html" we can change to:
+"scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html",
+  }
+  - Now we simply write to compile "npm run start/npm start"
+  - To build our project: "npm run build"
+
+- Parcel can not remove "console.log()" from the code, for that we need to install a library called
+- When we use "Parcel" or "Babel" it doesn't remove "console.log()" automatically.
+- So we have a package which removes "console.log()" that is know as 
+    "npm i babel-plugin-transform-remove-console"
+- How to use this "babel-plugin-transform-remove-console" in our code.
+- create a ".babelrc" file 
+- "babelrc" it is a configuration file for "babel".
+
+- "render" means update something in the "DOM".
+
+- React.createElement() => gives us the Object() => then it converted to HTML then puts into the "DOM".
+
+- React keeps track of "key".
+
+- Different types we can write "React.createElement()":-
+React.createElement();
+createElement();      // For this import {createElement} from "react";
+ce();                 // For this import {createElement as ce} from "react";
+
+- "JSX" - It is a HTML like syntax but it is not HTML inside Javascript.
+
+- "JSX" behind the screen using "Babel" converts to "React.createElement()" then gives us the Object() => then it converted to HTML then puts/render into the "DOM".
+
+- "Babel" comes with "Parcel".
+
+- We have 2 "package-lock.json" in our App.
+- First is there outside and another is there in "node_modules".
+- In "package-lock.json" keeps track of all the versions in "node_modules".
+
+- As we are putting "node_modules" in ".gitignore" file then how "package-lock.json" keeps track of all the version of packsges?
+Ans: When we push our code to "Github" then "Server" pulls the code from the "Github" then there in "Server" execute the same command then it creates its own node_modules there in "Server" then  the website is published.
+
+- JSX Advantages:
+------------------
+- Readability
+- Developer Experience
+- Syntactical Sugar
+- Less code
+- Maintanability
+- No reapetition
+- Developer friendly
+
+React Component:
+----------------
+- Everything is React is a component.
+- We have 2 components: Functional and Class based component.
+- Functional component is nothing but a Javascript Function which returns some piece of "JSX"/React Element.
+- Names of component starts with Capital letter. It is not mandatory but it is a good practice.
+- When we have multiple lines in "JSX" use "()" for dining elements.
+
+const HeaderComponent = () => {
+  return (
+    <div>
+      <h1>Namaste React Functional Component</h1>
+      <h2>This is a h2 tag</h2>
+    </div>
+  )
+}
+
+********* can write without return statement*********
+
+const HeaderComponent = () => (
+  <div>
+    <h1>Namaste React Functional Component</h1>
+    <h2>This is a h2 tag</h2>
+  </div>
+);
+
+// This is known as react element
+const heading = (
+  <h1 id="title" key="h2">Namaste react</h1>
+)
+
+- Inside React JSX we have "{}" parenthesis where we can write any piece of Javascript code here
+Ex:
+const HeaderComponent = () => {
+  return (
+    <div>
+      <h1>Namaste React Functional Component</h1>
+      <h2>This is a h2 tag</h2>
+      {console.log("hello sanu")}
+      {/* Any piece of JS code will work here */}
+      {1+2}
+      {/* {Title()} */}
+      <Title />
+    </div>
+  )
+}
+
+- Note: If we have any malicios api that we don't know and we passes that to our JSX, then in JSX we have something known as "Sanitization" so it will check the api first then it wil execute. So this is how JSX is so powerfull. 
+- Whatever we put inside "JSX" it first "Sanitize" everything then executes in the browser.
+- So we have to use "Component" inside another Component that is know as "Component Composition"/"Composing Component".
+
+Chapter 04:
+-----------
+- IS JSX Mandatory in React - No
+- IS ES6 Mandatory in React - No
+- React doesn't forces you to use anything.
+- In any piece of JSX component that you write there can only be one parent
+- "React.Fragment" is a component that is exported by "React".
+- "React.Fragment" - It is like an empty tag.
+- "React.Fragment" - We can use like "<></>" this also.
+- "<></>" this is the shortend of "React.Fragment"
+- "<></>" / "React.Fragment" - In this you can not pass any styles or attributes.
+- To add styles and attributes in parent tag need to use "div"
+- We can write styles like below
+const styleObj = {backgroundColor: "red"};
+<div style={styleObj}>
+
+or
+
+<div style={{backgroundColor: "red"}}>
+
+- Both are same.
+
+- Ques: Can we use "React.Fragment" inside "React.Fragment" ?
+- Ans: Yes, but of no use, no extra tag will come.
+
+- Config Driven UI - 
+- When you build a real world application, so you want your website should work in Dehradhon, Odisha, Hyderabad, we don't use different website for different cities right, so what we do is we control our frontend using a config that is known as "Config Driven UI".
+- Backend controls what type of data should show in different city like in (kolkatta,, odisha)
+- All the UI that is driven by a config which is send by backend 
+
+- You pass the "Argument "and Receives the "Parameter".  
+
+- You can use "Props" to get the data from parent component.
+- But you can write "props" or anything else like "properties"/"peers", anything you want to write.
+
+- "<RestaurantCard restaurant={restaurantList[0]} />" - At the end of the day it is just a function calling like "{RestaurantCard(restaurantList[0])}".
+
+Virtual DOM:
+-----------
+- Representaion of a DOM
+- We required for re-concelation in React.
+
+
+Chapter 5:
+====================
+- import Header from "../Header;      -> This is known as "Default Import"
+- import { Title } from "../Title;    -> This is known as "Named Import" and "Title" is exported from the file.
+- import * as Obj from "../Header;    -> This is known as everything we have exported from the file.
+- Then we need to use like this "Obj.ExportedElement"
+Ex: <Obj.Header />
+- This is how "<React.Fragment>" is working behind the scene.
+
+- import Header, { Title } from "../Header.js;   -> Here "Header" is export default from the file and "Title" is only exported from the file.
+
+- import NewHeader from "../Header.js;      -> Here "NewHeader" is not exported from the "Header.js" file but you can write the "import name" as anything but need to write the path corrctly.
+- It will work only if we do "export default" from the file but won't work in the case of only "export".
+
+- When you are in the same file then ne need to "export" it.
+
+- "React" follows one way data binding.
+
+- Every component in react maintains a state and we can put all the vaiable into that state.
+- Every time if need to create local variable use state inside react.
+
+- A Hook is just a function.
+
+- "useState()" is used to create local state variable.
+Ex: const [searchText, setSearchText] = useState("sanu"); // returns [variableName, function to update the variable]
+
+- You can write "useState()" like below also:
+    const searchChange = useState("sanu");
+    const [searchText, setSearchText] = searchChange;
+
+- Whenever any state variable changes react re-render the component again.
+
+
+Chapter 6:
+================
+- useEffect(callback, [dependencyArray]):
+
+- So in "useEffect()" we pass acallback function, so that callback doesn't call directly it called whenever "useEffect()" wanted to call.
+- In a component whenever any state or props changes it rerenders the app. 
+
+- Empty dependency array -> useEffect will call once after render.
+- with dependency -> call once after initial rendering and exevytime after re-render(when dependency state changes)
+-"Allow CORS: Access-Control-Allow-Origin" - Install this extension in chrome for CORS error.
+
+- If we will fetching an api inside the "useEffect" then our component calls 2 times:
+    - First time when renders to the browser it will render with initial data if we have.
+    - Second time after fetching the api, out UI gets updated and again it will render as anything changes in our app our component gets re-render. 
+
+- Shimmer UI - A shimmer UI resembles the page's actual UI, so users will understand how quickly the web or mobile app will load even before the content has shown up.
+
+- JS Expression - ((a=10), console.log(20));
+- Can write JS Expressions in JSX but can not write JS statements in JSX. 
+- If you want to write JS statements then wrap inside a curly braces
+Ex: ((a=10), console.log(20)) - Now it is calculated as Expression.
+
+Chapter 7: - Reeact Router
+===========================
+- Without dependency in "useEffect" will call in every render.
+- You can create more than one "useEffect()" in you component.
+
+- Never ever use component inside another component.
+Ex: Const Body = () => {
+  const Header = () => {
+    return ();
+  }
+  return ();
+}
+
+- Never write a "useState()" inside "if" condition / "for" loop
+
+- "useState()" is a hook that react gives you to create local state variable in your functional component.
+
+- Do not use "useState()" outside of the component.
+
+- Ina ny app they put their image in the "CDN" because it gives you fast loading.
+
+- If you want to use any complex form in React then use "Formic" library.
+
+React Router:
+===============
+- If you want to render our app according to the router then use like below :
+root.render(<RouterProvider router={appRouter} />);
+
+- To show the error in the page we have a hook named as "useRouteError".
+
+- We have two types of routing i.e,
+1- Server Side Routing :
+    - It is the way that all the pages come from server
+2 - Client Side Routing
+    - We will call routing without network calling.
+
+- If we use "<a></a>" anchor inside the routing then it will refresh the page when we click.
+
+- All the childrens will go into the "<Outlet />".
+
+
+Chapter 8: - Class Component
+============================
+
+- We do not mutate state directly.
+
+- If we have to use more than one function in a single element then use like this: <button onClick={() => {setCount(1), setCount2(1)}}>Click Me</button>
+
+- We should write the state inside "constructor()" method in Class component because whenever we create a class component the "constructor()" method calls first.
+
+- Our JSX converts to HTML code in the background by using "Babel".
+
+- So in life Cycle menthod we have two phase:
+          1 - Render Phase(Constructor and Renders comes under this)
+          2 - Commit Phase(componentDidMount comes under this)
+
+- To get Github Api:
+    URL: https://docs.github.com/en/rest/users/users?apiVersion=2022-11-28#get-a-user
+
+    - Then in the right hand side we have a url: https://api.github.com/users/USERNAME
+    
+    - Then in the place of "USERNAME" type your "Github username".
+
+    - So for me it is  - https://api.github.com/users/Braja123
+
+- You can not write "async" keyword in "useEffect() callback" in functional component, but you can write "async" in "componentDidMount()" life cycle hook in Class component.
+
+- On every update "componentDidUpdate" will call.
+
+- "componentWillUnmount" will call when we will go to another page.\
+- When we leaving a page.
+- We have a SPA just we are changing the component.
+- "this" keyword is share with all the methods in the class baseed component.
+
+Chapter 9: - Custom Hooks, Lazy Loading, Suspense
+==================================================
+- Custom Hooks gives us - It makes our code Readable, Reusable, separation of concern(maintanable - because easy to debug) and testable.
+- Modularity means- we have brken down our code to meaningfull peaces.
+
+- One of the Benifit of custom hooks ? 
+      - In normal function you can not use hooks.
+
+- A Bundler like "Parcel" does a lot of things but the main work is to bundle our code.
+- "Parcel" uses a single JS file to bundle our all components/codes.
+
+- Chunking/ Code Splitting/ Dynamic Bundling/ Lazy Loading/ On Demand Loading/ Dynamic import - All are same.
+
+ const Instamart = lazy(() => import("../src/components/Instamart"));
+- Here import is the "import()" method not the mormal import which we used to import.
+- When we pass the component inside the "Suspense" component then React knows that these components will be lazy loaded / they will be dynamically loaded, so they wait for "import()" promise to resolve.
+- import("../src/components/Instamart") - This is a promise who is resolves after so many time
+
+- So here in lazy loading scenario, we don't have one bundle that keeps all the code else that will take more time to load.
+- So we split our bundle according to the pages.
+- Let's say that suppose we go to "amazon" website so there if we go to "mobile section" then related to that bundle we generate. Similarly if we will go to "fashion section" it will renders related to that bundles.
+- So when the "Bundle" size is getting big there we will use this "Chunking" technique.
+- So if the size of that application is less then there no need to use "lazy loading" technique.
+- Never ever load/write your dynamic component(means which component uses lazy loading) inside another component
+
+
+Chapter 10:- Styles, Tailwind CSS Framework
+===========================================
+- The props of using a style library is:
+    - Easy to use
+    - Reusable
+    - we will give a consistance UI when we are using CSS.
+- Cons:
+    - It makes our "bundle" size heavy
+    - We loose a lot of control over styles
+    - Personal customization is very hard
+
+How we use styles in the Project?
+- Normal Native CSS - means styles inside "index.css" file
+- SCSS - Pre-processor of CSS
+- Inline CSS
+- Component Libraries - Material UI, Base Ui, Chakra, Ant
+- Styled Component - It is like writing css in Javascript
+- Tailwind CSS Framework
+
+ Tailwind CSS Framework
+ -----------------------
+ - Pros of tailwind:
+  - Code is less
+  - easy to use
+  - No duplicate CSS
+  - Bundle size is small
+  - Faster development because no need to switch between files for CSS changes
+  - Easy to debug
+  - You can Customize the predefined styles
+  - Gives you more control over things
+
+Cons:
+  - takes sometime to learn this Library
+  - It looks ugly when you use more "classes" in a single class
+  - It compromise the readability of our code when you use more "classes" in a single class
+
+Url: https://tailwindcss.com/docs/installation/play-cdn
+CDN: <script src="https://cdn.tailwindcss.com"></script>
+
+Url for Installation: https://tailwindcss.com/docs/guides/parcel
+NPM: npm install -D tailwindcss postcss
+
+- Here "postcss" is used for compiling/converting the class name understandable to the browser.
+
+- ".postcssrc" file takes the configuration which is used inside the file tells our bundler which is parcel that in our project we have seen so many tailwind classes so we need to onfigure it so when we compile then convert that tailwind css to normal css.
+
+- When taiwind don't show the auto correction use "ctrl + spacebar".
+
+How to use customizable style in tailwind:
+- className="w-[100px]" - "styleName - Square bracket notation"
+
+Chapter 11: - Context
+=====================
+- props drilling - If we will pass the data from Parent to super child that process of passing the data is known as "Prop Drilling".
+
+-Lifting state up - From parent component when we pass the data to different childs that is know as LSU.
+
+- React dev tools "Profiler" is watching what you are doing in the webpage.
+
+- "State" and "Props" are tied to component but "Context" is separate means not specific to any component. You can have it in a central place.
+
+- "Context" is the central store - So when you need data all accross the platform then use it.
+- "Context" is like "useState" for your whole application. 
+
+- Easy To get the context name in the React Dev Tools if we have more "Context".
+UserContext.displayName = "SanuContext";
+
+- To avoid "prop drilling" we use "Context API".
+
+- Any Component in our App can access to Context and update in the Context.
+
+Chapter 12: - Redux
+===================
+- We have 2 layers in our App - UI and Data Layer.
+
+- Redux is a full flezed/ Big object.
+
+- You have a big Store that broken down to "Slices" . 
+- A "slice" is a portion of your store.
+
+- Dispatch an "Action" which calls a "Reducer" function which updates the slice of our Redux store.
+
+- "Selector" is Read data from the slice of our Redux store.
+
+- Basically the cart component is "Subscribe"(means updates) to my store useing a selector.
+
+Install Redux Toolkit - npm i @reduxjs/toolkit
+      - "Redux" core job is to maintain the store.
+
+Install React Redux -  npm i react-redux
+      - "Bridge" between React and Redux.
+
+- "Provider" will provide the store to the whole Application.
+
+Things to do while creating the Redux Store:
+- Create Store
+      - configureStore - import from RTK.
+- Provide my store to app
+      - <Provider store=store /> - import from "react-redux"
+- Slice
+      - createSlice - import from RTK
+      - createSlice({
+          name:
+          initialState:
+          reducers: {
+            addItem: (state, action) => {state = action.payload}
+          } 
+      })
+- export const { addItem } = createSlice.actions;
+- export default createSlice.reducer;
+
+- Put that "slice" into "store"
+      - {
+        reducer: {
+          cart: createSlice,
+          user: userSlice
+        }
+      }
+
+All the Chapter:
+// Early return pattern
+  if(!isMenuOpen) return null; 
+
+  - Means if the condition is false then return null else will show the page.
+
+- The more plan you will do the better code you will write.
+
+- When we have normal "/:id" there we use "useParams()" hook.
+- But when we have "queryStrings" there we need to use "useSearchParams()" hook.
+
+
+Chapter 13: Unit Test Cases
+============================
+- What is Test Driven Development ?
+Ans: We write test cases even before we write the code.
+
+Different Types of Testing ?
+- Manual Testing - Testing By human
+- Automation Testing - Code testing a code 
+
+- End to End(E2E) Testing - we will test all the flow.
+                          - Covers Entire user journey.
+- Headless Browser - It is kind of actual browser but does not show anything.
+
+Unit Testing:
+- It is the core job of developers.
+- It means you are testign small units.
+
+Integration Testing - Test each segment.
+
+Jest:
+- Jest is a delightful Javascript Testing Framework with a focus on simplicity.
+- React Testing Library Uses Jest behind the screen.
+- React Testing Library in react makes very efficient.
+
+Unit Testing Procedures:
+--------------------------
+1 - Install React Testing Library:
+- npm install --save-dev @testing-library/react
+
+2 - Install JEST:
+- npm i -D jest
+
+3 - Configure Jest
+npx jest --init 
+- here we use "npx" because we want to initialize/execute "jest" once and also we want to create "jest.config" file once.
+
+4 - Install jest-environment-jsdom
+npm i -D jest-environment-jsdom
+
+5 - Create Test File
+- How to create testing files - "__test__"
+- whatever file we will create inside "__test__", Jest will consider as testing files and "Jest" will keep track of them.
+- This "__"(underscore underscore) also known as "Dunder".
+- "__test__" is also called as "Dunder Test"
+
+- Convention to write test files - "testFile.test.js"
+
+- test("Name of our Test", callback function);
+Ex: test("what you want to check", () => {
+  expect(sum(2, 5).toBe(5));
+})
+
+- Our normal Javascript file doesn't understand the "import" so for that we need to take the help of "babel" in this.
+
+Error: For Import error in jest:
+6 - Configure Babel with jest
+Url: https://jestjs.io/docs/28.x/getting-started#using-babel
+npm install --save-dev babel-jest @babel/core @babel/preset-env 
+
+- So "babel" main job is to take some code and modify it.
+
+7 - Create ".babelrc" / "babel.config.js" file.
+8 - gitignore "/coverage" file.
+
+- "jsdom" is like a container, so whatever we write inside the test files that will render in the "jsdom".
+
+- We are not running "Jest" on the browser, we are running in the "jsdom".
+
+Error: Support for the experimental syntax 'jsx' isn't currently enabled
+Sol: Add Babel syntax in the code
+9 - Connect JSX with jest.
+install: npm i -D @babel/preset-react
+Write in ".babelrc":
+    ["@babel/preset-react", {"runtime": "automatic"}]
+    // "runtime" means the place where your code is running
+
+Error: Jest does not read ".png, .jpg" or any other images.
+- So create a Dummy image for testing - "mocks" Folder - dummyLogo.js - export default "dummy.png";
+- Here "mocks" folder name is not mandatory you can write any other folder name.
+- Here "dummyLogo.js" is not mandatory but you have to create a ".js" file so that "Jest" understands the file, because "jest" only understands "javascript".
+- Then inside "jest.config.js" file -> inside "moduleNameMapper" write like below
+Ex: moduleNameMapper: {
+    "\\.(jpg|png|svg)$": "../mocks/dummyLogo.js"
+  },
+
+ - "moduleNameMapper" is the place where I can tell Jest that all the ".png" images whatever "png" image we have take it from the dummy image.
+
+
+Error: could not find react-redux context value; please ensure the component is wrapped in a <Provider>
+Soln: As "jest" does not about "provider", so add a "provider"
+- import { Provider } from "react-redux";
+- import store from "../../store/store";
+- And wrap the Component
+
+Error: useHref() may be used only in the context of a <Router> component.
+Soln: As we used "Link" tag inside the component so "jest" does not know about that.
+- So import - import { StaticRouter } from "react-router-dom/server";
+- Then wrap "Provider" inside it.
+
+Error: fetch is not defined
+Soln: "jest" does not know about "fetch", so we need mock the data.
+- "fetch" return us a readable stream.
+- We convert that readable stream into "json".
+Ex:
+global.fetch = jest.fn(() => {
+  //"fetch" is a function that return a promise
+  return Promise.resolve({
+    // josn is a function that return a promise
+    json: () => {
+      return Promise.resolve(RESTAURANT_DATA);
+    },
+  });
+});
+
+
+- HMR for "jest":
+- In "package.json" file -> "scripts"{"watch-test": "jest --watch"} 
+
+- (e.target.value) - this "e" is known as synthetic event.
+
+- Component Testing
+- Integration Testing and Unit Testing
+- 
+
+
+
+
+Chapter 15:
+- Higher Order Component takes an existing component and modifies a little
+
+Chapter - 16:
+- Data(Live Data) - 
+  - There are two ways we can handle live data i.e, 
+    1- Web Sockets:
+    -----------------
+    - It is a two way connection and when we connected/handshaked from "UI" to "Server", now we can quickly send the data from either side. So it is the bi-directional live data.
+    - It has no regular interval.
+    - Ex: Trading, Whatsapp
+
+    2- API Polling:
+    -----------------
+    - UI request from the server, so data flows from "Server" to "UI
+    - It is one directional.
+    - It has interval.
+    - Ex: Gmail, Youtube, Crickbuzz
+
+
+
+Task To Complete:
+  - If we click on the search result that should show us the result according to search and update the videos.
+  - For scrolling - check lect. Timer "2.38.00"
+
+- <React.StrictMode>
+     - It will call the component twice just to make sure that if it updates properly, it's a way for React to confirm that whatever you are doing the reconciliation is happening properly. React does their internal checks.
+    - It only happens in development. It won't effect in production.
+
+- useMemo()
+    - useMemo is a React hook that lets you cache the result of a calculation between re-renders.
+    - It is like memoizing the heavy operaions.
+
+- useRef()
+    - useRef is a React hook that lets you reference a value that's not needed for rendering.
+    - It will take the value but not re-render or reset the component again and again but when any other state or props changes the "useRef" element gets updated.
+    - It is not a normal variable, it returns a object
