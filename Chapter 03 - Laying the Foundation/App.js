@@ -57,3 +57,10 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(<HeaderComponent />);
 
+
+
+const das = <h1>React JS</h1>;
+const Data = () => (
+<div><h1>
+  <das />
+  </h1></div>)

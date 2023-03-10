@@ -23,8 +23,8 @@ To Compile React:
 - Npm  - It is not "Node Package Manager"
 - "-D" when installing any package means "DevDependencies"
 
-Chapter 01:
------------
+Chapter 01: React and React DOM
+-------------------------------
 <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
 - Here "react@18" means we are using react version 18
 
@@ -54,8 +54,8 @@ root.render(heading);
 - This means react is not configured properly or react is missing.
 
 
-Chapter 02:
------------
+Chapter 02: Parcel - The Budler
+-------------------------------
 const container = React.createElement(
   'div',
   {
@@ -174,8 +174,9 @@ Ex: "browserslist": [
 Ans: There are so many things that react optimize for us and there are so many things which bundlers gives us. So our whole application is combination of all these things and to fast our app we used bundling, HMR, tree shaking, image optimization, etc. 
 
 
-Chapter 03:
-----------
+Chapter 03: Babel, JSX
+----------------------
+- npm used to install the packages and npx used to execute directly without installing.
 - We can our "script" tag in "package.json" file.
 - Like to execute the app we used to write "npx parcel index.html" we can change to:
 "scripts": {
@@ -277,6 +278,8 @@ const HeaderComponent = () => {
 - Note: If we have any malicios api that we don't know and we passes that to our JSX, then in JSX we have something known as "Sanitization" so it will check the api first then it wil execute. So this is how JSX is so powerfull. 
 - Whatever we put inside "JSX" it first "Sanitize" everything then executes in the browser.
 - So we have to use "Component" inside another Component that is know as "Component Composition"/"Composing Component".
+
+- Component inside another component(nested component) is known as "Component Composition".
 
 Chapter 04:
 -----------
