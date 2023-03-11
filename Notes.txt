@@ -333,8 +333,10 @@ The algorithm React uses to diff one tree with another to determine which parts 
 - no keys(not acceptable) <<<<<<<< index(use only if you do not have anything) <<< unique key(best pratice)
 
 
-Chapter 5:
-====================
+Chapter 5: useState, 
+===========
+- In React we have one-way data binding.
+
 - import Header from "../Header;      -> This is known as "Default Import"
 - import { Title } from "../Title;    -> This is known as "Named Import" and "Title" is exported from the file.
 - import * as Obj from "../Header;    -> This is known as everything we have exported from the file.
@@ -358,6 +360,9 @@ Ex: <Obj.Header />
 
 - "useState()" is used to create local state variable.
 Ex: const [searchText, setSearchText] = useState("sanu"); // returns [variableName, function to update the variable]
+
+Why we use [] to define "useState" ?
+- "useState" returns an array and that array has a value inside it.
 
 - You can write "useState()" like below also:
     const searchChange = useState("sanu");
