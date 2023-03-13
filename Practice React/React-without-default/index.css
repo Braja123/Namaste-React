@@ -1,4 +1,4 @@
-.res-card {
+.restaurant-list, .res-card {
   display: flex;
   flex-wrap: wrap;
 }
@@ -6,4 +6,10 @@
   border: 1px solid black;
   margin: 10px;
   padding: 10px;
+}
+.shimmer-card {
+  width: 200px;
+  height: 200px;
+  background: lightblue;
+  margin: 20px;
 }

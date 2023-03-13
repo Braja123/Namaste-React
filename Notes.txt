@@ -371,8 +371,8 @@ Why we use [] to define "useState" ?
 - Whenever any state variable changes react re-render the component again.
 
 
-Chapter 6:
-================
+Chapter 6: useEffect, API
+=========================
 - useEffect(callback, [dependencyArray]):
 
 - So in "useEffect()" we pass acallback function, so that callback doesn't call directly it called whenever "useEffect()" wanted to call.
@@ -393,7 +393,7 @@ Chapter 6:
 - If you want to write JS statements then wrap inside a curly braces
 Ex: ((a=10), console.log(20)) - Now it is calculated as Expression.
 
-Chapter 7: - Reeact Router
+Chapter 7: - React Router
 ===========================
 - Without dependency in "useEffect" will call in every render.
 - You can create more than one "useEffect()" in you component.
@@ -418,6 +418,8 @@ Ex: Const Body = () => {
 
 React Router:
 ===============
+createBrowserRouter, RouterProvider, errorElement, useRouteError
+
 - If you want to render our app according to the router then use like below :
 root.render(<RouterProvider router={appRouter} />);
 
@@ -431,7 +433,15 @@ root.render(<RouterProvider router={appRouter} />);
 
 - If we use "<a></a>" anchor inside the routing then it will refresh the page when we click.
 
+- When we use "Link" tag then in browser it converts into "anchor(a)" tag because at the end browser understands the "a" tag, so that it converts.
+
 - All the childrens will go into the "<Outlet />".
+
+- Dynamic Routing:
+  When we pass anything with "/restaurants/:id", so everything will go under "/restaurants/" so that is known as Dynamic routing.
+
+- How to read a Dynamic URL params?
+  - use "useParams" hook
 
 
 Chapter 8: - Class Component
