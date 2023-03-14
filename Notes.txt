@@ -444,8 +444,8 @@ root.render(<RouterProvider router={appRouter} />);
   - use "useParams" hook
 
 
-Chapter 8: - Class Component
-============================
+Chapter 8: - Class Component, Cleanups
+======================================
 
 - We do not mutate state directly.
 
@@ -472,10 +472,15 @@ Chapter 8: - Class Component
 
 - On every update "componentDidUpdate" will call.
 
-- "componentWillUnmount" will call when we will go to another page.\
+- "componentWillUnmount" will call when we will go to another/leave page.
 - When we leaving a page.
 - We have a SPA just we are changing the component.
 - "this" keyword is share with all the methods in the class baseed component.
+
+- We have the SPA but in SPA we are changing the components through React-router.
+
+Demerits of SPA:
+- When we are changing the page there we are not reloading the page we are just re-conciling, that's why we need to do the cleanups.
 
 Chapter 9: - Custom Hooks, Lazy Loading, Suspense
 ==================================================
@@ -485,12 +490,22 @@ Chapter 9: - Custom Hooks, Lazy Loading, Suspense
 - One of the Benifit of custom hooks ? 
       - In normal function you can not use hooks.
 
+- We use custom hooks to export some logic to that.
+
+Normal Function VS Hooks:
+- functions returns JSX but hooks is a piece of javascript code that extracts some logic out of it.
+
+- When you will use "evenListener" so do cleanups else that will be there forever.
+
 - A Bundler like "Parcel" does a lot of things but the main work is to bundle our code.
 - "Parcel" uses a single JS file to bundle our all components/codes.
 
 - Chunking/ Code Splitting/ Dynamic Bundling/ Lazy Loading/ On Demand Loading/ Dynamic import - All are same.
 
+- In "lazy loading" at first when we are trying load that page that will give us "undefined" because React tries to render that component fast but as our component is on demand loading so that will take some time to load. So that is also known as "suspend loading".
+
  const Instamart = lazy(() => import("../src/components/Instamart"));
+ - Here this "import" is a "promise".
 - Here import is the "import()" method not the mormal import which we used to import.
 - When we pass the component inside the "Suspense" component then React knows that these components will be lazy loaded / they will be dynamically loaded, so they wait for "import()" promise to resolve.
 - import("../src/components/Instamart") - This is a promise who is resolves after so many time

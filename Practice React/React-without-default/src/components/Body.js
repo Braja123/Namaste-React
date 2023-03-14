@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { restaurantList } from "../constants";
 import RestaurantCard from "./RestaurantCard";
 import { Shimmer } from "./Shimmer";
+import { filterData } from "../utils/helper";
+import useOnline from "../utils/useOnline";
 
 const Body = () => {
   const [searchText, setSearchText] = useState("");
@@ -9,11 +11,7 @@ const Body = () => {
   const [filterRestaurants, setFilterRestaurants] = useState([]);
   const [allRestaurants, setAllRestaurants] = useState([]);
 
-  const filterData = () => {
-    return allRestaurants.filter((item) =>
-      item.data.name.toLowerCase().includes(searchText.toLowerCase())
-    );
-  };
+  
 
   useEffect(() => {
     getRestaurants();
@@ -32,6 +30,10 @@ const Body = () => {
   if(!allRestaurants) return null;
   // if(filterRestaurants?.length === 0) return <h2>No matching Restaurants</h2>;
 
+  let status = useOnline();
+
+  if(!status) return <h1>🍄Offline, please check your internet connection</h1>
+
   return allRestaurants.length === 0 ? (
     <Shimmer />
   ) : (
@@ -46,7 +48,7 @@ const Body = () => {
         <button
           onClick={() => {
             // filter data
-            let data = filterData();
+            let data = filterData(searchText, allRestaurants);
             setFilterRestaurants(data);
           }}
         >
