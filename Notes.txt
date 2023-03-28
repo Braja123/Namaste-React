@@ -95,10 +95,10 @@ To install Parcel Bundler:
 - "package-loack.json" maintains a hash(sha512) in it, this hash insures that what exactly the version of the "parcel" running on my system, is exactly same on the production or not.
 
 - "node-modules" are like database to the npm.
-- Do not use "node-modules" to ".gitignore".
+- Use "node-modules" to ".gitignore".
 - If we have "package.json" and "package-loack.json" then we can re-generate the "node-modules" again by using "npm install".
 
-- It is not a good practice to use "React CDN" because if any react version change in future thten we have to change the CDN also, so that is very much hectic.
+- It is not a good practice to use "React CDN" because if any react version change in future then we have to change the CDN also, so that is very much hectic.
 
 - "npm i react" - when we do not use "-D" means we want use globally.
 
@@ -106,7 +106,7 @@ To install Parcel Bundler:
 - "npx parcel index.html" - means We have to execute "parcel" with the entry point of our app which is index.html.
 
 - "Browser scripts cannot have imports or exports" - To fix this error we have to use "type="module" in script tag.
-- When we  use "type="module" in script tag - we are telling "HTML" that our script tag is "module" not a normal script tag.
+- When we use "type="module" in script tag - we are telling "HTML" that our script tag is "module" not a normal script tag.
 
 Parcel Benifits:
 ---------------
@@ -234,7 +234,7 @@ React Component:
 - We have 2 components: Functional and Class based component.
 - Functional component is nothing but a Javascript Function which returns some piece of "JSX"/React Element.
 - Names of component starts with Capital letter. It is not mandatory but it is a good practice.
-- When we have multiple lines in "JSX" use "()" for dining elements.
+- When we have multiple lines in "JSX" use "()" for lining elements.
 
 const HeaderComponent = () => {
   return (
@@ -282,7 +282,7 @@ const HeaderComponent = () => {
 - Component inside another component(nested component) is known as "Component Composition".
 
 Chapter 04: Swiggy App Starts, Props, Virtual Dom
------------
+-------------------------------------------------
 - IS JSX Mandatory in React - No
 - IS ES6 Mandatory in React - No
 - React doesn't forces you to use anything.
@@ -291,7 +291,7 @@ Chapter 04: Swiggy App Starts, Props, Virtual Dom
 - "React.Fragment" - It is like an empty tag.
 - "React.Fragment" - We can use like "<></>" this also.
 - "<></>" this is the shortend of "React.Fragment"
-- "<></>" / "React.Fragment" - In this you can not pass any styles or attributes.
+- "<></>" - "React.Fragment" - In this you can not pass any styles or attributes.
 - To add styles and attributes in parent tag need to use "div"
 - We can write styles like below
 const styleObj = {backgroundColor: "red"};
@@ -308,10 +308,11 @@ or
 
 - Config Driven UI - 
 - When you build a real world application, so you want your website should work in Dehradhon, Odisha, Hyderabad, we don't use different website for different cities right, so what we do is we control our frontend using a config that is known as "Config Driven UI".
-- Backend controls what type of data should show in different city like in (kolkatta,, odisha)
+- Backend controls what type of data should show in different city like in (kolkatta, odisha)
 - All the UI that is driven by a config which is send by backend 
 
-- You pass the "Argument "and Receives the "Parameter".  
+- You pass the "Argument "and Receives the "Parameter".
+
 
 - You can use "Props" to get the data from parent component.
 - But you can write "props" or anything else like "properties"/"peers", anything you want to write.
@@ -375,7 +376,7 @@ Chapter 6: useEffect, API
 =========================
 - useEffect(callback, [dependencyArray]):
 
-- So in "useEffect()" we pass acallback function, so that callback doesn't call directly it called whenever "useEffect()" wanted to call.
+- So in "useEffect()" we pass a callback function, so that callback doesn't call directly it called whenever "useEffect()" wanted to call.
 - In a component whenever any state or props changes it rerenders the app. 
 
 - Empty dependency array -> useEffect will call once after render.
@@ -412,7 +413,7 @@ Ex: Const Body = () => {
 
 - Do not use "useState()" outside of the component.
 
-- Ina ny app they put their image in the "CDN" because it gives you fast loading.
+- In any app they put their image in the "CDN" because it gives you fast loading.
 
 - If you want to use any complex form in React then use "Formic" library.
 
@@ -487,7 +488,7 @@ Chapter 9: - Custom Hooks, Lazy Loading, Suspense
 - Custom Hooks gives us - It makes our code Readable, Reusable, separation of concern(maintanable - because easy to debug) and testable.
 - Modularity means- we have brken down our code to meaningfull peaces.
 
-- One of the Benifit of custom hooks ? 
+- One of the Benefit of custom hooks ? 
       - In normal function you can not use hooks.
 
 - We use custom hooks to export some logic to that.
@@ -571,6 +572,10 @@ How to use customizable style in tailwind:
 
 Chapter 11: - Context
 =====================
+- State is like local variable to a component.
+- But props are used to pass data from one component(parent) to another.
+- Props is which are receiving inside the component.
+
 - props drilling - If we will pass the data from Parent to super child that process of passing the data is known as "Prop Drilling".
 
 -Lifting state up - From parent component when we pass the data to different childs that is know as LSU.

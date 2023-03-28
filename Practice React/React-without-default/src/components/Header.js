@@ -1,4 +1,7 @@
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import UserContext from "../utils/UserContext";
+import { useSelector } from "react-redux";
 
 export const Title = () => (
   <img
@@ -9,6 +12,11 @@ export const Title = () => (
 );
 
 const HeaderComponent = () => {
+
+  const {user} = useContext(UserContext);
+
+  const cartItems = useSelector(store => store.cart.items)
+
   return (
     <>
       <Title />
@@ -26,8 +34,12 @@ const HeaderComponent = () => {
           <Link to="/instamart">
             <li>Instamart</li>
           </Link>
+          <Link to="/cart">
+            <li>Cart - {cartItems.length} items</li>
+          </Link>
         </ul>
       </div>
+      {user.name}
     </>
   );
 };
