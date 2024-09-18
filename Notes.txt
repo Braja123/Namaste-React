@@ -1,3 +1,69 @@
+Codes To Do:
+Swiggy App-
+  Header, 
+  Body - render cards by using API
+  Create Top restaurant filter button
+  
+
+Definitions:
+--------------
+Behind the scene how React works?
+// - React.createElement(Object) => HTML(Browser Understand)
+// - React.createElement is an "Object" while it is rendering into the DOM it converts itself into the HTML and puts up into the DOM
+
+- Why do we use NPM?
+Ans: Because our React app powered by lot of things suppose we have to minified it or bundle it or we have to remove console log, optimize our code for that we need lot of helper packages and those helper packages comes inside "NPM"
+
+// Component Composition
+- Component inside another component is known as CC.
+
+// Functional Components are just like normal function in Javascript
+
+//JSX - HTML like syntax but not HTML
+
+// Props are like arguments in JS functions
+// Props are objects which has passed argumets inside it.
+
+// Config Driven UI, UI Layer, Data Layer
+
+// All the common files use inside "Utils" folder 
+
+// Good habit to write all the constants in "Capital Letter"(Ex: LOGO_URL)
+
+// Two types of Export/Import
+
+// React is doing efficient DOM manupulation, like Virtual DOM.
+
+// When state changes in a component then React component will re-render everytime.
+
+// Virtual DOM is the representation of actual DOM.
+// The Object which comes in React.createElement is the "Virtual DOM".
+
+// useEffect() will call after the component has been render.
+
+// Conditional rendering
+
+// Router: - createBrowserRouter, RouterProvider, Outlet, useRouteError, Link, useParams, Dynamic Routing
+
+// Class Component - this.state({}) - for local state variable
+this.setState({}) - to update variable 
+- First Constructor() is called -> then render() is called -> then React updates the DOM -> then ComponentDidMount() is called. 
+- The Virtual DOM manupulation done in "Render Phase" in life cycle method;
+
+// Single Responsibility Principle - Means it will make our code Reusable, Maintanable, Testable
+// Custom hook is not mandatory but if will use then our code will look more readable, modular, reusable
+
+// Breakdown our app to smaller chunks is know as "Lazy loading/ Chunking/ code splitting"
+// Why use Lazy Loading - The request for the js file doesn't become so heavy that takes lots of time to load.
+
+// HOC - HOC is a function which takes a component and returns a component. HOC mostly used to enhance the component.
+
+// Data Layer - State, props, local variables, code inside {} 
+// UI layer - JSX
+
+// Lifting state up - child to parent data transfer
+
+
 Editor - VS Code
 Browser - Chrome
 
@@ -25,17 +91,21 @@ To Compile React:
 
 Chapter 01: React and React DOM
 -------------------------------
+CDN - Content Delivery network - These are the website where the react has been hosted and we are pulling react to our project.
+
 <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
 - Here "react@18" means we are using react version 18
 
 
 <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
 - Here "react-dom@18" means we are using web version of react that's why they used "react-dom".
-- Gives you access to DOM
+- Gives you access to DOM and we can modify DOM.
+- React-dom is like bridge to connect with React with Dom.
 - Whatever code we write that should goes into the browser that is happening inside that library.
 
 const heading = React.createElement("h1", {}, "Namaste React");
-- This is how we create element using javascript.
+// React.createElement("Tag Name", {Attributes}, Children)
+- This is how we create element using Reacct.
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 - Tells React what is the root element inside my app.
@@ -45,13 +115,20 @@ root.render(heading);
 - Passing the React element inside the root.
 - Whenever we pass anything to the "render" method that gets injected inside the root.
 - "render" method takes the React element and modifies our DOM means injects to the DOM.  
+- "render" method is basically responsible to take that object and convert into the heading tag and put it up on the DOM. 
 
 - At the end of the day React element is a plain javascript "object".
+
+- React.createElement(Object) => HTML(Browser Understand)
+- React.createElement is an "Object" while it is rendering into the DOM it converts itself into the HTML and puts up into the DOM
 
 - If you want to add React to your existing project then you can do that by creating a "root" id and inject React to it. 
 
 <div id="root">Not render</div>
-- This means react is not configured properly or react is missing.
+- When the browser reads our HTML so it will print "Not render" in the browser. But as soon as it goes to the script it will load React into our app then it will load React-DOM to our app then it will go to the next script and load "App.js" to our app and it will start executing "App.js" code line by line and when it will reach "root.render(parent)" it will render that parent inside our root and "replace" whatever was there previously in the root.
+
+- If anything pass inside "root" then that will be replaced by React. Like "Not render" will be replaced by React code.
+- If react is not configured properly or react is missing then "Not render" will display.
 
 
 Chapter 02: Parcel - The Budler
@@ -74,7 +151,9 @@ Ans: Because our React app powered by lot of things suppose we have to minified 
 
 - "npm init -y" - used to create "package.json" file
 - If we will use "-y" then npm will skip all the questions.
-- If will don't use "-y" then npm will ask questions about your project.
+- If we don't use "-y" then npm will ask questions about your project.
+
+- "package.json" is the configuration for NPM.
 
 
 To install Parcel Bundler:
@@ -91,12 +170,12 @@ To install Parcel Bundler:
 
 - "package-lock.json" will tell you which version you are using. It is a proof that what exact version you used. It keeps a snapshot of the version.
 - "package-loack.json" is a very important file it locks the version.
--Note: Don't put "package-loack.json" in ".gitignore" file.
-- "package-loack.json" maintains a hash(sha512) in it, this hash insures that what exactly the version of the "parcel" running on my system, is exactly same on the production or not.
+- Note: Don't put "package-lock.json" in ".gitignore" file.
+- "package-lock.json" maintains a hash(sha512) in it, this hash insures that what exactly the version of the "parcel" running on my system, is exactly same on the production or not.
 
 - "node-modules" are like database to the npm.
 - Use "node-modules" to ".gitignore".
-- If we have "package.json" and "package-loack.json" then we can re-generate the "node-modules" again by using "npm install".
+- If we have "package.json" and "package-lock.json" then we can re-generate the "node-modules" again by using "npm install".
 
 - It is not a good practice to use "React CDN" because if any react version change in future then we have to change the CDN also, so that is very much hectic.
 
@@ -135,7 +214,7 @@ Parcel Benifits:
 - Create a Server
 - BUNDLING
 - MINIFY
-- Cleaning our
+- Cleaning our code
 - Dev and Build production
 - Super fast build algorithm
 - Image Optimization
@@ -146,6 +225,8 @@ Parcel Benifits:
 command: npx parcel index.html --https
 - Manages Port number
 - Zero Config
+- Differential Bundling - support older browser
+- Consistance hashing - read from parcel documentation
 - Tree Shaking - Removing unwanted codes.
 If we have to import any library to our file and that library has many functions but among them if we use only some of the functions then "Parcel" ignored rest of the functions which are unused.
 
@@ -207,6 +288,8 @@ ce();                 // For this import {createElement as ce} from "react";
 
 - "JSX" - It is a HTML like syntax but it is not HTML inside Javascript.
 
+- JSX is different and React is different. We can write JSX without React also.
+
 - "JSX" behind the screen using "Babel" converts to "React.createElement()" then gives us the Object() => then it converted to HTML then puts/render into the "DOM".
 
 - "Babel" comes with "Parcel".
@@ -230,7 +313,7 @@ Ans: When we push our code to "Github" then "Server" pulls the code from the "Gi
 
 React Component:
 ----------------
-- Everything is React is a component.
+- Everything in React is a component.
 - We have 2 components: Functional and Class based component.
 - Functional component is nothing but a Javascript Function which returns some piece of "JSX"/React Element.
 - Names of component starts with Capital letter. It is not mandatory but it is a good practice.
@@ -254,14 +337,38 @@ const HeaderComponent = () => (
   </div>
 );
 
+********* can write without curly brace also if only one statement is there*********
+
+const HeaderComponent = () => <h1>Namaste React Functional Component</h1>
+
+const elem = <span>Hello</span>
+
 // This is known as react element
 const heading = (
-  <h1 id="title" key="h2">Namaste react</h1>
+  <h1 id="title" key="h2">Namaste react {elem}</h1>       // Here "elem" again a react element and we are passing inside another element
 )
+
+******* also write like below React Element************
+
+const heading = <h1 id="title" key="h2">Namaste react</h1>;
+
+*************************************************************
 
 - Inside React JSX we have "{}" parenthesis where we can write any piece of Javascript code here
 Ex:
 const HeaderComponent = () => {
+  return heading;    // can pass React element(heading) like that
+  return (heading);  // can pass React element(heading) like that
+
+  ****** can write below jsx also**********
+  (
+    <div>
+      <h1>Namaste React Functional Component</h1>
+      <h2>This is a h2 tag</h2>
+    </div>
+  )
+  **********************************************
+
   return (
     <div>
       <h1>Namaste React Functional Component</h1>
@@ -269,7 +376,7 @@ const HeaderComponent = () => {
       {console.log("hello sanu")}
       {/* Any piece of JS code will work here */}
       {1+2}
-      {/* {Title()} */}
+      {/* {Title()} */}                           // Here "Title" is another component that we pass like normal function call
       <Title />
     </div>
   )
@@ -318,6 +425,56 @@ or
 - But you can write "props" or anything else like "properties"/"peers", anything you want to write.
 
 - "<RestaurantCard restaurant={restaurantList[0]} />" - At the end of the day it is just a function calling like "{RestaurantCard(restaurantList[0])}".
+
+****************inside map() method***************************
+<div className="res-container">
+  {
+    resObj.map((res) => {
+      return <RestaurantCard res={res} key={res?.info?.id} />;
+    })
+  }
+</div>
+
+                  OR
+
+<div className="res-container">
+  {
+    resObj.map((res) => (
+      <RestaurantCard res={res} key={res?.info?.id} />;
+    ))
+  }
+</div>      
+
+                  OR
+
+<div className="res-container">
+  {
+    resObj.map((res) => <RestaurantCard res={res} key={res?.info?.id} />)
+  }
+</div> 
+
+Two types of Export/Import
+----------------------------
+- Default Export/Import
+Ex: export default Component;
+    import Component from "path";
+
+- Named Export/Import
+Ex: export const Component;
+    import {Component} from "path";
+
+************Code inside onClick method************
+<button
+  onClick={() => {
+    const filteredRestaurant = filRes.filter(
+      (res) => res?.info?.avgRating >= 4
+    );
+    setFilRes(filteredRestaurant);
+  }}
+  >
+  // onClick={filterRes}                            // here "filterRes" is a function that we can define
+</button>
+
 
 Virtual DOM:
 -----------
@@ -371,6 +528,20 @@ Why we use [] to define "useState" ?
 
 - Whenever any state variable changes react re-render the component again.
 
+************ different way to write useState **********************
+const [filRes, setFilRes] = useState(resObj);
+
+            OR
+
+const arr = useState(resObj);
+const [filRes, setFilRes] = arr;
+
+            OR
+
+const arr = useState(resObj);
+const filRes = arr[0];
+const setFilRes = arr[1];
+
 
 Chapter 6: useEffect, API
 =========================
@@ -380,7 +551,8 @@ Chapter 6: useEffect, API
 - In a component whenever any state or props changes it rerenders the app. 
 
 - Empty dependency array -> useEffect will call once after render.
-- with dependency -> call once after initial rendering and exevytime after re-render(when dependency state changes)
+- with dependency -> call once after initial rendering and everytime after re-render(when dependency state changes)
+
 -"Allow CORS: Access-Control-Allow-Origin" - Install this extension in chrome for CORS error.
 
 - If we will fetching an api inside the "useEffect" then our component calls 2 times:
@@ -454,8 +626,6 @@ Chapter 8: - Class Component, Cleanups
 
 - We should write the state inside "constructor()" method in Class component because whenever we create a class component the "constructor()" method calls first.
 
-- Our JSX converts to HTML code in the background by using "Babel".
-
 - So in life Cycle menthod we have two phase:
           1 - Render Phase(Constructor and Renders comes under this)
           2 - Commit Phase(componentDidMount comes under this)
@@ -476,7 +646,7 @@ Chapter 8: - Class Component, Cleanups
 - "componentWillUnmount" will call when we will go to another/leave page.
 - When we leaving a page.
 - We have a SPA just we are changing the component.
-- "this" keyword is share with all the methods in the class baseed component.
+- "this" keyword is share with all the methods in the class based component.
 
 - We have the SPA but in SPA we are changing the components through React-router.
 
@@ -486,7 +656,7 @@ Demerits of SPA:
 Chapter 9: - Custom Hooks, Lazy Loading, Suspense
 ==================================================
 - Custom Hooks gives us - It makes our code Readable, Reusable, separation of concern(maintanable - because easy to debug) and testable.
-- Modularity means- we have brken down our code to meaningfull peaces.
+- Modularity means- we have broken down our code to meaningfull peaces.
 
 - One of the Benefit of custom hooks ? 
       - In normal function you can not use hooks.
@@ -578,7 +748,7 @@ Chapter 11: - Context
 
 - props drilling - If we will pass the data from Parent to super child that process of passing the data is known as "Prop Drilling".
 
--Lifting state up - From parent component when we pass the data to different childs that is know as LSU.
+- Lifting state up - Passes data from Child component to Parent Component.
 
 - React dev tools "Profiler" is watching what you are doing in the webpage.
 
@@ -607,7 +777,7 @@ Chapter 12: - Redux
 
 - "Selector" is Read data from the slice of our Redux store.
 
-- Basically the cart component is "Subscribe"(means updates) to my store useing a selector.
+- Basically the cart component is "Subscribe"(means updates) to my store using a selector.
 
 Install Redux Toolkit - npm i @reduxjs/toolkit
       - "Redux" core job is to maintain the store.
@@ -653,6 +823,22 @@ All the Chapter:
 - When we have normal "/:id" there we use "useParams()" hook.
 - But when we have "queryStrings" there we need to use "useSearchParams()" hook.
 
+- If you wanted to add console.log() inside reducer then you can not add directly, you need to add like below
+Ex:
+clearCart: (state) => {
+  console.log(current(state));        // need to import "current"
+  state.items.length = 0;
+},
+
+Note:- Redux uses one library known as "immer" behind the scene which checks the original redux state and mutate state and gives you the new updated state/ Immutable state.
+
+Ex: 
+Vanila(older) REDUX => DON'T MUTATE STATE
+const newState = [...state];
+newState.items.push(action.payload);
+return newState;
+
+// REDUX Toolkit => Mutate the state
 
 Chapter 13: Unit Test Cases
 ============================
@@ -814,7 +1000,18 @@ Task To Complete:
     - useMemo is a React hook that lets you cache the result of a calculation between re-renders.
     - It is like memoizing the heavy operaions.
 
+useCallback()
+    - useCallback is a React Hook that lets you cache a function definition between re-renders.
+
 - useRef()
     - useRef is a React hook that lets you reference a value that's not needed for rendering.
     - It will take the value but not re-render or reset the component again and again but when any other state or props changes the "useRef" element gets updated.
     - It is not a normal variable, it returns a object
+
+  Controlled Component:
+  - CC definitely has input fields which is controlled by React State.
+  - CC will handle through React js state
+
+  UnControlled Component:
+  - UC definitely has input fields which not controlled by React state, that should controlled by javascript or ref.
+  - Through UC we can directly manupulate the DOM.

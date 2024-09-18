@@ -1,11 +1,9 @@
 import { useState, useEffect } from "react";
 
 const useSwiggyApi = () => {
-  
   const [allRestaurants, setAllRestaurants] = useState([]);
   // const [restaurants, setRestaurants] = useState(restaurantList);
   const [filteredRestaurants, setFilterRestaurants] = useState([]);
-  
 
   const getRestaurants = async () => {
     const data = await fetch(
@@ -21,7 +19,6 @@ const useSwiggyApi = () => {
   }, []);
 
   return [allRestaurants, filteredRestaurants, setFilterRestaurants];
-
-}
+};
 
 export default useSwiggyApi;
